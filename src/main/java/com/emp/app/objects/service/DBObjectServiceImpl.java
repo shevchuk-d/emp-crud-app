@@ -37,13 +37,13 @@ public class DBObjectServiceImpl implements DBObjectService {
 
 	@Override
 	@Transactional
-	public DBObject getDBObjectById(int id) {
+	public DBObject getDBObjectById(long id) {
 		return this.dbobjectDAO.getDBObjectById(id);
 	}
 
 	@Override
 	@Transactional
-	public void removeDBObject(int id) {
+	public void removeDBObject(long id) {
 		this.dbobjectDAO.removeDBObject(id);
 	}
 

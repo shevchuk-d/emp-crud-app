@@ -39,7 +39,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<DBObject> listDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<DBObject> objectsList = session.createQuery("from objects").list();
+		List<DBObject> objectsList = session.createQuery("from Objects").list();
 		for(DBObject p : objectsList){
 			logger.info("Person List::"+p);
 		}
@@ -47,17 +47,17 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	}
 
 	@Override
-	public DBObject getDBObjectById(int id) {
+	public DBObject getDBObjectById(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		DBObject p = (DBObject) session.load(DBObject.class, new Integer(id));
+		DBObject p = (DBObject) session.load(DBObject.class, new Long(id));
 		logger.info("Person loaded successfully, Person details="+p);
 		return p;
 	}
 
 	@Override
-	public void removeDBObject(int id) {
+	public void removeDBObject(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		DBObject p = (DBObject) session.load(DBObject.class, new Integer(id));
+		DBObject p = (DBObject) session.load(DBObject.class, new Long(id));
 		if(null != p){
 			session.delete(p);
 		}

@@ -9,7 +9,7 @@ public interface DBObjectService {
 	public void addDBObject(DBObject p);
 	public void updateDBObject(DBObject p);
 	public List<DBObject> listDBObjects();
-	public DBObject getDBObjectById(int id);
-	public void removeDBObject(int id);
+	public DBObject getDBObjectById(long id);
+	public void removeDBObject(long id);
 	
 }

@@ -13,24 +13,25 @@ import javax.persistence.Table;
  * @author pankaj
  *
  */
-@Entity
-@Table(name="objects")
+@Entity(name="Objects")
+@Table(name="new_employees.Objects")
 public class DBObject {
 
 	@Id
 	@Column(name="object_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	private String name;
-	
-	private int ot_id;
 
-	public int getId() {
+    @Column(name="object_type_id")
+	private long objectTypeId;
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -42,16 +43,16 @@ public class DBObject {
 		this.name = name;
 	}
 
-	public int getCountry() {
-		return ot_id;
+	public long getObjectTypeId() {
+		return objectTypeId;
 	}
 
-	public void setCountry(int ot_id) {
-		this.ot_id = ot_id;
+	public void setObjectTypeId(long object_type_id) {
+		this.objectTypeId = object_type_id;
 	}
 	
 	@Override
 	public String toString(){
-		return "id="+id+", name="+name+", ot_id="+ot_id;
+		return "id="+id+", name="+name+", ot_id="+objectTypeId;
 	}
 }

@@ -26,7 +26,7 @@ public class DBObjectController {
 	public String listPersons(Model model) {
 		model.addAttribute("object", new DBObject());
 		model.addAttribute("listDBObjects", this.personService.listDBObjects());
-		return "object";
+		return "objects";
 	}
 	
 	//For add and update person both
@@ -45,18 +45,18 @@ public class DBObjectController {
 		
 	}
 	
-	@RequestMapping("/remove/{id}")
-    public String removePerson(@PathVariable("id") int id){
+	@RequestMapping("/remove/{object_id}")
+    public String removePerson(@PathVariable("object_id") long id){
 		
         this.personService.removeDBObject(id);
         return "redirect:/objects";
     }
  
-    @RequestMapping("/edit/{id}")
-    public String editPerson(@PathVariable("id") int id, Model model){
+    @RequestMapping("/edit/{object_id}")
+    public String editPerson(@PathVariable("object_id") long id, Model model){
         model.addAttribute("object", this.personService.getDBObjectById(id));
         model.addAttribute("listPersons", this.personService.listDBObjects());
-        return "object";
+        return "objects";
     }
 	
 }
