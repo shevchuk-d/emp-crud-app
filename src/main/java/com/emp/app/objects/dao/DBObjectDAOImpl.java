@@ -1,20 +1,19 @@
-package com.emp.app.persons.dao;
+package com.emp.app.objects.dao;
 
 import java.util.List;
 
-import com.emp.app.persons.model.Person;
+import com.emp.app.objects.model.DBObject;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.journaldev.spring.persons.model.Person;
 
 @Repository
-public class PersonDAOImpl implements PersonDAO {
+public class DBObjectDAOImpl implements DBObjectDAO {
 	
-	private static final Logger logger = LoggerFactory.getLogger(PersonDAOImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(DBObjectDAOImpl.class);
 
 	private SessionFactory sessionFactory;
 	
@@ -23,14 +22,14 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public void addPerson(Person p) {
+	public void addDBObject(DBObject p) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(p);
 		logger.info("Person saved successfully, Person Details="+p);
 	}
 
 	@Override
-	public void updatePerson(Person p) {
+	public void updateDBObject(DBObject p) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 		logger.info("Person updated successfully, Person Details="+p);
@@ -38,27 +37,27 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Person> listPersons() {
+	public List<DBObject> listDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Person> personsList = session.createQuery("from Person").list();
-		for(Person p : personsList){
+		List<DBObject> objectsList = session.createQuery("from objects").list();
+		for(DBObject p : objectsList){
 			logger.info("Person List::"+p);
 		}
-		return personsList;
+		return objectsList;
 	}
 
 	@Override
-	public Person getPersonById(int id) {
-		Session session = this.sessionFactory.getCurrentSession();		
-		Person p = (Person) session.load(Person.class, new Integer(id));
+	public DBObject getDBObjectById(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		DBObject p = (DBObject) session.load(DBObject.class, new Integer(id));
 		logger.info("Person loaded successfully, Person details="+p);
 		return p;
 	}
 
 	@Override
-	public void removePerson(int id) {
+	public void removeDBObject(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Person p = (Person) session.load(Person.class, new Integer(id));
+		DBObject p = (DBObject) session.load(DBObject.class, new Integer(id));
 		if(null != p){
 			session.delete(p);
 		}

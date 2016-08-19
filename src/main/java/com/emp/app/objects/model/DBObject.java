@@ -1,4 +1,4 @@
-package com.emp.app.persons.model;
+package com.emp.app.objects.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,17 +14,17 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="PERSON")
-public class Person {
+@Table(name="objects")
+public class DBObject {
 
 	@Id
-	@Column(name="id")
+	@Column(name="object_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
 	
-	private String country;
+	private int ot_id;
 
 	public int getId() {
 		return id;
@@ -42,16 +42,16 @@ public class Person {
 		this.name = name;
 	}
 
-	public String getCountry() {
-		return country;
+	public int getCountry() {
+		return ot_id;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCountry(int ot_id) {
+		this.ot_id = ot_id;
 	}
 	
 	@Override
 	public String toString(){
-		return "id="+id+", name="+name+", country="+country;
+		return "id="+id+", name="+name+", ot_id="+ot_id;
 	}
 }
