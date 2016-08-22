@@ -47,7 +47,6 @@ public class DBObjectController {
 	
 	@RequestMapping("/remove/{object_id}")
     public String removePerson(@PathVariable("object_id") long id){
-		
         this.personService.removeDBObject(id);
         return "redirect:/objects";
     }
@@ -58,5 +57,5 @@ public class DBObjectController {
         model.addAttribute("listPersons", this.personService.listDBObjects());
         return "objects";
     }
-	
+
 }

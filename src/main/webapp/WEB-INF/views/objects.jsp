@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Person Page</title>
+	<title>Objects</title>
 	<style type="text/css">
 		.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 		.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -14,18 +14,18 @@
 </head>
 <body>
 <h1>
-	Add a Person
+	Add an Object
 </h1>
 
-<c:url var="addAction" value="/person/add" ></c:url>
+<c:url var="addAction" value="/object/add" ></c:url>
 
-<form:form action="${addAction}" commandName="person">
+<form:form action="${addAction}" commandName="object">
 <table>
-	<c:if test="${!empty person.name}">
+	<c:if test="${!empty object.name}">
 	<tr>
 		<td>
 			<form:label path="id">
-				<spring:message text="ID"/>
+				<spring:message text="id"/>
 			</form:label>
 		</td>
 		<td>
@@ -44,48 +44,63 @@
 			<form:input path="name" />
 		</td> 
 	</tr>
+
 	<tr>
 		<td>
-			<form:label path="country">
-				<spring:message text="Country"/>
+			<form:label path="objectTypeId">
+				<spring:message text="objectTypeId"/>
 			</form:label>
 		</td>
 		<td>
-			<form:input path="country" />
+			<form:input path="objectTypeId" />
 		</td>
 	</tr>
+
+	<%--<tr>--%>
+		<%--<td>--%>
+			<%--<form:label path="old_object_id">--%>
+				<%--<spring:message text="old_object_id"/>--%>
+			<%--</form:label>--%>
+		<%--</td>--%>
+		<%--<td>--%>
+			<%--<form:input path="old_object_id" />--%>
+		<%--</td>--%>
+	<%--</tr>--%>
+
 	<tr>
 		<td colspan="2">
-			<c:if test="${!empty person.name}">
+			<c:if test="${!empty object.name}">
 				<input type="submit"
 					value="<spring:message text="Edit Person"/>" />
 			</c:if>
-			<c:if test="${empty person.name}">
+			<c:if test="${empty object.name}">
 				<input type="submit"
 					value="<spring:message text="Add Person"/>" />
 			</c:if>
 		</td>
 	</tr>
-</table>	
+</table>
 </form:form>
 <br>
 <h3>Persons List</h3>
-<c:if test="${!empty listPersons}">
+<c:if test="${!empty listDBObjects}">
 	<table class="tg">
 	<tr>
-		<th width="80">Person ID</th>
-		<th width="120">Person Name</th>
-		<th width="120">Person Country</th>
+		<th width="80">Object ID</th>
+		<th width="120">Object Name</th>
+		<th width="120">Object type id</th>
+		<%--<th width="120">Object Country</th>--%>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
-	<c:forEach items="${listPersons}" var="person">
+	<c:forEach items="${listDBObjects}" var="object">
 		<tr>
-			<td>${person.id}</td>
-			<td>${person.name}</td>
-			<td>${person.country}</td>
-			<td><a href="<c:url value='/edit/${person.id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${person.id}' />" >Delete</a></td>
+			<td>${object.id}</td>
+			<td>${object.name}</td>
+			<td>${object.objectTypeId}</td>
+			<%--<td>${object.oldObjectId}</td>--%>
+			<td><a href="<c:url value='/edit/${object.id}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${object.id}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

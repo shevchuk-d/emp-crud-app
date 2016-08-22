@@ -21,11 +21,15 @@ public class DBObject {
 	@Column(name="object_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	
+
+	@Column(name="name")
 	private String name;
 
     @Column(name="object_type_id")
 	private long objectTypeId;
+
+	@Column(name="old_object_id")
+	private String oldObjectId;
 
 	public long getId() {
 		return id;
@@ -54,5 +58,13 @@ public class DBObject {
 	@Override
 	public String toString(){
 		return "id="+id+", name="+name+", ot_id="+objectTypeId;
+	}
+
+	public String getOldObjectId() {
+		return oldObjectId;
+	}
+
+	public void setOldObjectId(String oldObjectId) {
+		this.oldObjectId = oldObjectId;
 	}
 }
