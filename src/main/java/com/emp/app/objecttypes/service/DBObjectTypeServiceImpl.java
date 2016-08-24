@@ -11,40 +11,40 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class DBObjectTypeServiceImpl implements DBObjectTypeService {
 
-	private DBObjectTypeDAO dbobjectTypeDAO;
+	private DBObjectTypeDAO dbObjectTypeDAO;
 
-	public void setDbobjectTypeDAO(DBObjectTypeDAO dbobjectTypeDAO) {
-		this.dbobjectTypeDAO = dbobjectTypeDAO;
+	public void setDbObjectTypeDAO(DBObjectTypeDAO dbObjectTypeDAO) {
+		this.dbObjectTypeDAO = dbObjectTypeDAO;
 	}
 
 	@Override
 	@Transactional
 	public void addDBObjectType(DBObjectType p) {
-		this.dbobjectTypeDAO.addDBObjectType(p);
+		this.dbObjectTypeDAO.addDBObjectType(p);
 	}
 
 	@Override
 	@Transactional
 	public void updateDBObjectType(DBObjectType p) {
-		this.dbobjectTypeDAO.updateDBObjectType(p);
+		this.dbObjectTypeDAO.updateDBObjectType(p);
 	}
 
 	@Override
 	@Transactional
 	public List<DBObjectType> listDBObjectTypes() {
-		return this.dbobjectTypeDAO.listDBObjectTypes();
+		return this.dbObjectTypeDAO.listDBObjectTypes();
 	}
 
 	@Override
 	@Transactional
 	public DBObjectType getDBObjectTypeById(long id) {
-		return this.dbobjectTypeDAO.getDBObjectTypeById(id);
+		return this.dbObjectTypeDAO.getDBObjectTypeById(id);
 	}
 
 	@Override
 	@Transactional
 	public void removeDBObjectType(long id) {
-		this.dbobjectTypeDAO.removeDBObjectType(id);
+		this.dbObjectTypeDAO.removeDBObjectType(id);
 	}
 
 }

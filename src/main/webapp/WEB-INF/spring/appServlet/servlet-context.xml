@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:context="http://www.springframework.org/schema/context"
+			 xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/p"
+			 xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -41,6 +45,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.emp.app.objects.model.DBObject</beans:value>
+				<beans:value>com.emp.app.objecttypes.model.DBObjectType</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -52,22 +57,23 @@
 		</beans:property>
 	</beans:bean>
 	
-	<beans:bean id="dbobjectDAO" class="com.emp.app.objects.dao.DBObjectDAOImpl">
+	<beans:bean id="dbObjectDAO" class="com.emp.app.objects.dao.DBObjectDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="dbobjectService" class="com.emp.app.objects.service.DBObjectServiceImpl">
-		<beans:property name="dbobjectDAO" ref="dbobjectDAO"/>
+	<beans:bean id="dbObjectService" class="com.emp.app.objects.service.DBObjectServiceImpl">
+		<beans:property name="dbObjectDAO" ref="dbObjectDAO"/>
 	</beans:bean>
 
-	<beans:bean id="dbobjectTypeDAO" class="com.emp.app.objecttypes.dao.DBObjectTypeDAOImpl">
+	<beans:bean id="dbObjectTypeDAO" class="com.emp.app.objecttypes.dao.DBObjectTypeDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="dbobjectTypeService" class="com.emp.app.objecttypes.service.DBObjectTypeServiceImpl">
-		<beans:property name="dbobjectTypeDAO" ref="dbobjectTypeDAO"/>
+	<beans:bean id="dbObjectTypeService" class="com.emp.app.objecttypes.service.DBObjectTypeServiceImpl">
+		<beans:property name="dbObjectTypeDAO" ref="dbObjectTypeDAO"/>
 	</beans:bean>
 
 	<context:component-scan base-package="com.emp.app" />
-	
+	<context:component-scan base-package="com.emp.app" />
+
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">

@@ -13,8 +13,8 @@ public class DBObjectServiceImpl implements DBObjectService {
 
 	private DBObjectDAO dbobjectDAO;
 
-	public void setDbobjectDAO(DBObjectDAO dbobjectDAO) {
-		this.dbobjectDAO = dbobjectDAO;
+	public void setDbObjectDAO(DBObjectDAO dbObjectDAO) {
+		this.dbobjectDAO = dbObjectDAO;
 	}
 
 	@Override

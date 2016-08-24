@@ -40,11 +40,11 @@ public class DBObjectTypeDAOImpl implements DBObjectTypeDAO {
 	@Override
 	public List<DBObjectType> listDBObjectTypes() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<DBObjectType> objectsList = session.createQuery("from Object_types").setMaxResults(10).list();
-		for(DBObjectType p : objectsList){
+		List<DBObjectType> objectTypesList = session.createQuery("from Object_types").list();
+		for(DBObjectType p : objectTypesList){
 			logger.info("Person List::"+p);
 		}
-		return objectsList;
+		return objectTypesList;
 	}
 
 	@Override

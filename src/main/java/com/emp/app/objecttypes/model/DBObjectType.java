@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * Hibernate provides JPA implementation
  *
  */
-@Entity(name="Object_types")
+@Entity (name="Object_types")
 @Table(name="new_employees.Object_types")
 public class DBObjectType {
 

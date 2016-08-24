@@ -12,33 +12,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+//@RequestMapping("objects")
 public class DBObjectController {
 	
-	private DBObjectService personService;
+	private DBObjectService dbObjectService;
 	
 	@Autowired(required=true)
-	@Qualifier(value="dbobjectService")
+	@Qualifier(value= "dbObjectService")
 	public void setDBObjectService(DBObjectService ps){
-		this.personService = ps;
+		this.dbObjectService = ps;
 	}
 	
 	@RequestMapping(value = "/objects", method = RequestMethod.GET)
 	public String listPersons(Model model) {
 		model.addAttribute("object", new DBObject());
-		model.addAttribute("listDBObjects", this.personService.listDBObjects());
+		model.addAttribute("listDBObjects", this.dbObjectService.listDBObjects());
 		return "objects";
 	}
 	
 	//For add and update person both
 	@RequestMapping(value= "/object/add", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("object") DBObject p){
+	public String addDBObject(@ModelAttribute("object") DBObject p){
 		
 		if(p.getId() == 0){
 			//new person, add it
-			this.personService.addDBObject(p);
+			this.dbObjectService.addDBObject(p);
 		}else{
 			//existing person, call update
-			this.personService.updateDBObject(p);
+			this.dbObjectService.updateDBObject(p);
 		}
 		
 		return "redirect:/objects";
@@ -47,14 +48,14 @@ public class DBObjectController {
 	
 	@RequestMapping("/remove/{object_id}")
     public String removePerson(@PathVariable("object_id") long id){
-        this.personService.removeDBObject(id);
+        this.dbObjectService.removeDBObject(id);
         return "redirect:/objects";
     }
  
     @RequestMapping("/edit/{object_id}")
     public String editPerson(@PathVariable("object_id") long id, Model model){
-        model.addAttribute("object", this.personService.getDBObjectById(id));
-        model.addAttribute("listPersons", this.personService.listDBObjects());
+        model.addAttribute("object", this.dbObjectService.getDBObjectById(id));
+        model.addAttribute("listObjects", this.dbObjectService.listDBObjects());
         return "objects";
     }
 

@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Objects</title>
+    <title>Object Types</title>
     <style type="text/css">
         .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
         .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -14,12 +14,12 @@
 </head>
 <body>
 <h1>
-    Add an Object
+    Object Types
 </h1>
 
 
 
-<h3>Persons List</h3>
+<h3>Object Types List</h3>
 <c:if test="${!empty listDBObjectTypes}">
     <table class="tg">
         <tr>
@@ -28,7 +28,7 @@
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
-        <c:forEach items="${listDBObjectTypes}" var="object">
+        <c:forEach items="${listDBObjectTypes}" var="objectType">
             <tr>
                 <td>${objectType.objectTypeId}</td>
                 <td>${objectType.name}</td>
