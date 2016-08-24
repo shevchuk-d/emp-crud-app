@@ -56,30 +56,32 @@
 		</td>
 	</tr>
 
-	<%--<tr>--%>
-		<%--<td>--%>
-			<%--<form:label path="old_object_id">--%>
-				<%--<spring:message text="old_object_id"/>--%>
-			<%--</form:label>--%>
-		<%--</td>--%>
-		<%--<td>--%>
-			<%--<form:input path="old_object_id" />--%>
-		<%--</td>--%>
-	<%--</tr>--%>
+	<tr>
+		<td>
+			<form:label path="oldObjectId">
+				<spring:message text="oldObjectId"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="oldObjectId" />
+		</td>
+	</tr>
 
 	<tr>
 		<td colspan="2">
 			<c:if test="${!empty object.name}">
 				<input type="submit"
-					value="<spring:message text="Edit Person"/>" />
+					value="<spring:message text="Edit Object"/>" />
 			</c:if>
 			<c:if test="${empty object.name}">
 				<input type="submit"
-					value="<spring:message text="Add Person"/>" />
+					value="<spring:message text="Add Object"/>" />
 			</c:if>
 		</td>
 	</tr>
 </table>
+
+
 </form:form>
 <br>
 <h3>Persons List</h3>
@@ -89,7 +91,7 @@
 		<th width="80">Object ID</th>
 		<th width="120">Object Name</th>
 		<th width="120">Object type id</th>
-		<%--<th width="120">Object Country</th>--%>
+		<th width="120">Old Object ID</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
@@ -98,7 +100,7 @@
 			<td>${object.id}</td>
 			<td>${object.name}</td>
 			<td>${object.objectTypeId}</td>
-			<%--<td>${object.oldObjectId}</td>--%>
+			<td>${object.oldObjectId}</td>
 			<td><a href="<c:url value='/edit/${object.id}' />" >Edit</a></td>
 			<td><a href="<c:url value='/remove/${object.id}' />" >Delete</a></td>
 		</tr>

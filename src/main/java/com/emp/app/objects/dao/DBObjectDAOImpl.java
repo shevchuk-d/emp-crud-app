@@ -39,7 +39,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<DBObject> listDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<DBObject> objectsList = session.createQuery("from Objects").list();
+		List<DBObject> objectsList = session.createQuery("from Objects").setMaxResults(10).list();
 		for(DBObject p : objectsList){
 			logger.info("Person List::"+p);
 		}
