@@ -1,11 +1,8 @@
 package com.emp.app.objects.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.emp.app.objecttypes.model.DBObjectType;
+
+import javax.persistence.*;
 
 /**
  * Entity bean with JPA annotations
@@ -17,9 +14,13 @@ import javax.persistence.Table;
 @Table(name="new_employees.Objects")
 public class DBObject {
 
+	@ManyToOne( fetch = FetchType.EAGER)
+	@JoinColumn( name = "object_type_id")
+	private DBObjectType dbObjectType;
+
 	@Id
-	@Column(name="object_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="object_id")
 	private long id;
 
 	@Column(name="name")
@@ -51,8 +52,8 @@ public class DBObject {
 		return objectTypeId;
 	}
 
-	public void setObjectTypeId(long object_type_id) {
-		this.objectTypeId = object_type_id;
+	public void setObjectTypeId(long objectTypeId) {
+		this.objectTypeId = objectTypeId;
 	}
 	
 	@Override

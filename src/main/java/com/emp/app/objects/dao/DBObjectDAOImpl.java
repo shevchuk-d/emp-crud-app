@@ -3,8 +3,12 @@ package com.emp.app.objects.dao;
 import java.util.List;
 
 import com.emp.app.objects.model.DBObject;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.transform.Transformers;
+import org.hibernate.type.LongType;
+import org.hibernate.type.StringType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -39,7 +43,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<DBObject> listDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<DBObject> objectsList = session.createQuery("from Objects").setMaxResults(10).list();
+		List<DBObject> objectsList = session.createQuery("from Objects o join Object_types ot where o.objectTypeId = :objectTypeId and o.objectTypeId = 101 ").setMaxResults(10).list();
 		for(DBObject p : objectsList){
 			logger.info("Person List::"+p);
 		}

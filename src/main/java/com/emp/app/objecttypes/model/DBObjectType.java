@@ -1,11 +1,9 @@
 package com.emp.app.objecttypes.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.emp.app.objects.model.DBObject;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Entity bean with JPA annotations
@@ -45,4 +43,6 @@ public class DBObjectType {
 		return "name="+name+", ot_id="+objectTypeId;
 	}
 
+	@OneToMany(mappedBy="Objects")
+	private List<DBObject> listDBObjects ;
 }

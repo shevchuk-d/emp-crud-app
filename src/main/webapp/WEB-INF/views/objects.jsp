@@ -84,7 +84,7 @@
 
 </form:form>
 <br>
-<h3>Persons List</h3>
+<h3>Objects List</h3>
 <c:if test="${!empty listDBObjects}">
 	<table class="tg">
 	<tr>
