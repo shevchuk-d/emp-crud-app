@@ -23,12 +23,12 @@ public class DBObjectController {
 		this.dbObjectService = ps;
 	}
 	
-	@RequestMapping(value = "/objects", method = RequestMethod.GET)
-	public String listPersons(Model model) {
-		model.addAttribute("object", new DBObject());
-		model.addAttribute("listDBObjects", this.dbObjectService.listDBObjects());
-		return "objects";
-	}
+//	@RequestMapping(value = "/objects", method = RequestMethod.GET)
+//	public String listDBObjects(Model model) {
+//		model.addAttribute("object", new DBObject());
+//		model.addAttribute("listDBObjects", this.dbObjectService.listDBObjects());
+//		return "objects";
+//	}
 	
 	//For add and update person both
 	@RequestMapping(value= "/object/add", method = RequestMethod.POST)
@@ -47,16 +47,23 @@ public class DBObjectController {
 	}
 	
 	@RequestMapping("/remove/{object_id}")
-    public String removePerson(@PathVariable("object_id") long id){
+    public String removeDBObject(@PathVariable("object_id") long id){
         this.dbObjectService.removeDBObject(id);
         return "redirect:/objects";
     }
  
     @RequestMapping("/edit/{object_id}")
-    public String editPerson(@PathVariable("object_id") long id, Model model){
+    public String editDBObject(@PathVariable("object_id") long id, Model model){
         model.addAttribute("object", this.dbObjectService.getDBObjectById(id));
         model.addAttribute("listObjects", this.dbObjectService.listDBObjects());
         return "objects";
     }
+
+	@RequestMapping(value = "/objects", method = RequestMethod.GET)
+	public String listDBObjects(Model model) {
+		model.addAttribute("object", new Object());
+		model.addAttribute("listExtendedDBObjects", this.dbObjectService.listExtendedDBObjects());
+		return "objects";
+	}
 
 }

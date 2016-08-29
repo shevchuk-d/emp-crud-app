@@ -25,7 +25,7 @@ public class DBObjectTypeController {
 	}
 	
 	@RequestMapping(value = "/object_types", method = RequestMethod.GET)
-	public String listPersons(Model model) {
+	public String listObjectTypes(Model model) {
 		model.addAttribute("objectType", new DBObject());
 		model.addAttribute("listDBObjectTypes", this.dbObjectTypeService.listDBObjectTypes());
 		return "object_types";
@@ -45,14 +45,14 @@ public class DBObjectTypeController {
 		return "redirect:/object_types";
 	}
 	
-	@RequestMapping("/remove/{object_type_id}")
-    public String removePerson(@PathVariable("object_type_id") long id){
+	@RequestMapping("/removeOT/{object_type_id}")
+    public String removeObjectType(@PathVariable("object_type_id") long id){
         this.dbObjectTypeService.removeDBObjectType(id);
         return "redirect:/object_types";
     }
  
-    @RequestMapping("/edit/{object_type_id}")
-    public String editPerson(@PathVariable("object_type_id") long id, Model model){
+    @RequestMapping("/editOT/{object_type_id}")
+    public String editObjectType(@PathVariable("object_type_id") long id, Model model){
         model.addAttribute("objectType", this.dbObjectTypeService.getDBObjectTypeById(id));
         model.addAttribute("listObjectTypes", this.dbObjectTypeService.listDBObjectTypes());
         return "object_types";

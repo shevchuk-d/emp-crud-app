@@ -1,4 +1,4 @@
-package com.emp.app.objects.model;
+package com.emp.app.attributes.model;
 
 import com.emp.app.objecttypes.model.DBObjectType;
 
@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity(name="Objects")
 @Table(name="new_employees.Objects")
-public class DBObject {
+public class Attr {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn( name = "object_type_id")

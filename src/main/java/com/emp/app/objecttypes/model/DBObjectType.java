@@ -43,6 +43,17 @@ public class DBObjectType {
 		return "name="+name+", ot_id="+objectTypeId;
 	}
 
-	@OneToMany(mappedBy="Objects")
+    @OneToMany(mappedBy="objectTypeId")
+//	@JoinColumn(name = "object_type_id", referencedColumnName = "object_type_id", nullable = false, updatable = false, insertable = false)
 	private List<DBObject> listDBObjects ;
+
+
+    public List<DBObject> getListDBObjects() {
+        return listDBObjects;
+    }
+
+
+    public void setListDBObjects(List<DBObject> listDBObjects) {
+        this.listDBObjects = listDBObjects;
+    }
 }

@@ -1,43 +1,45 @@
-package com.emp.app.objects.service;
+package com.emp.app.params.service;
 
 import java.util.List;
 
 import com.emp.app.objects.dao.DBObjectDAO;
 import com.emp.app.objects.model.DBObject;
+import com.emp.app.params.dao.ParamsDAO;
+import com.emp.app.params.model.Params;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class DBObjectServiceImpl implements DBObjectService {
+public class ParamsServiceImpl implements ParamsService {
 
-	private DBObjectDAO dbobjectDAO;
+	private ParamsDAO dbobjectDAO;
 
-	public void setDbObjectDAO(DBObjectDAO dbObjectDAO) {
+	public void setDbObjectDAO(ParamsDAO dbObjectDAO) {
 		this.dbobjectDAO = dbObjectDAO;
 	}
 
 	@Override
 	@Transactional
-	public void addDBObject(DBObject p) {
+	public void addDBObject(Params p) {
 		this.dbobjectDAO.addDBObject(p);
 	}
 
 	@Override
 	@Transactional
-	public void updateDBObject(DBObject p) {
+	public void updateDBObject(Params p) {
 		this.dbobjectDAO.updateDBObject(p);
 	}
 
 	@Override
 	@Transactional
-	public List<DBObject> listDBObjects() {
+	public List<Params> listDBObjects() {
 		return this.dbobjectDAO.listDBObjects();
 	}
 
 	@Override
 	@Transactional
-	public DBObject getDBObjectById(long id) {
+	public Params getDBObjectById(long id) {
 		return this.dbobjectDAO.getDBObjectById(id);
 	}
 

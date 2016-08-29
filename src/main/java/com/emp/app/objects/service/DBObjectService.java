@@ -11,5 +11,6 @@ public interface DBObjectService {
 	public List<DBObject> listDBObjects();
 	public DBObject getDBObjectById(long id);
 	public void removeDBObject(long id);
-	
+
+	public List<Object[]> listExtendedDBObjects();
 }
