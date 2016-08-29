@@ -14,5 +14,5 @@ public interface AttrDAO {
 	public Attr getDBObjectById(long id);
 	public void removeDBObject(long id);
 
-	public List<Object[]> listExtendedDBObjects();
+	public List<Object[]> listAttrs();
 }

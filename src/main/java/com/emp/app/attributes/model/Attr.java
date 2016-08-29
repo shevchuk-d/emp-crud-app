@@ -10,8 +10,8 @@ import javax.persistence.*;
  * @author pankaj
  *
  */
-@Entity(name="Objects")
-@Table(name="new_employees.Objects")
+@Entity(name="Attributes")
+@Table(name="new_employees.Attributes")
 public class Attr {
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -20,8 +20,8 @@ public class Attr {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="object_id")
-	private long id;
+	@Column(name="attr_id")
+	private long attrId;
 
 	@Column(name="name")
 	private String name;
@@ -29,15 +29,12 @@ public class Attr {
     @Column(name="object_type_id", nullable = false, updatable = false, insertable = false )
 	private long objectTypeId;
 
-	@Column(name="old_object_id")
-	private String oldObjectId;
-
 	public long getId() {
-		return id;
+		return attrId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.attrId = id;
 	}
 
 	public String getName() {
@@ -58,15 +55,7 @@ public class Attr {
 	
 	@Override
 	public String toString(){
-		return "id="+id+", name="+name+", ot_id="+objectTypeId;
-	}
-
-	public String getOldObjectId() {
-		return oldObjectId;
-	}
-
-	public void setOldObjectId(String oldObjectId) {
-		this.oldObjectId = oldObjectId;
+		return "id="+attrId+", name="+name+", ot_id="+objectTypeId;
 	}
 
 	public DBObjectType getDbObjectType() {

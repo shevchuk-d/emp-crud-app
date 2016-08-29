@@ -7,6 +7,9 @@ import com.emp.app.objects.model.DBObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+
 
 @Service
 public class DBObjectServiceImpl implements DBObjectService {
@@ -31,6 +34,7 @@ public class DBObjectServiceImpl implements DBObjectService {
 
 	@Override
 	@Transactional
+	@OneToMany(mappedBy = "object_types", cascade = CascadeType.ALL)
 	public List<DBObject> listDBObjects() {
 		return this.dbobjectDAO.listDBObjects();
 	}

@@ -106,7 +106,7 @@ insert into new_employees.params (object_id, attr_id, value) (
 	on (o.object_type_id = a.object_type_id and a.name = 'Hire Date')
 );
 insert into new_employees.params (object_id, attr_id, value) (
-    select o.object_id, a.attr_id, e.gender as 'value'
+    select o.object_id, a.attr_id, e.first_name as 'value'
     from new_employees.objects o
     join employees.employees e
 	on (o.old_object_id = e.emp_no)
@@ -114,7 +114,7 @@ insert into new_employees.params (object_id, attr_id, value) (
 	on (o.object_type_id = a.object_type_id and a.name = 'First Name')
 );
 insert into new_employees.params (object_id, attr_id, value) (
-    select o.object_id, a.attr_id, e.hire_date as 'value'
+    select o.object_id, a.attr_id, e.last_name as 'value'
     from new_employees.objects o
     join employees.employees e
 	on (o.old_object_id = e.emp_no)
@@ -130,7 +130,12 @@ insert into new_employees.params (object_id, attr_id, value) (
 	on (o.object_type_id = a.object_type_id and a.name = 'Salary')
 );
 insert into new_employees.params (object_id, attr_id, value) (
-    select o.object_id, a.attr_id, dm.dept_no as 'value'
+    select o.object_id, a.attr_id, 
+    (case
+    when dm.dept_no is not null then  'Yes'
+    end
+    )
+    as 'value'
     from new_employees.objects o
     join employees.dept_manager dm
 	on (o.old_object_id = dm.emp_no)

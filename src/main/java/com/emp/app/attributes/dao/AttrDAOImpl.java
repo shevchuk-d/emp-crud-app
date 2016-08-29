@@ -72,9 +72,9 @@ public class AttrDAOImpl implements AttrDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object[]> listExtendedDBObjects() {
+	public List<Object[]> listAttrs() {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q2 = "select o, o.dbObjectType from Objects as o join o.dbObjectType where o.name like 'A%' ";
+		String q2 = "select o, o.dbObjectType from Attributes as a join a.dbObjectType ";
 		return (List<Object[]>) session.createQuery(q2).setMaxResults(25).list();
 	}
 
