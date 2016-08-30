@@ -7,12 +7,11 @@ import com.emp.app.objects.model.DBObject;
 
 public interface AttrDAO {
 
-	public void addDBObject(Attr p);
-	public void updateDBObject(Attr p);
-	public List<Attr> listDBObjects();
+	public void addAttr(Attr p);
+	public void updateAttr(Attr p);
+	public List<Attr> listAttrs();
 
-	public Attr getDBObjectById(long id);
-	public void removeDBObject(long id);
+	public Attr getAttrById(long id);
+	public void removeAttr(long id);
 
-	public List<Object[]> listAttrs();
 }

@@ -45,6 +45,8 @@
 			<beans:list>
 				<beans:value>com.emp.app.objects.model.DBObject</beans:value>
 				<beans:value>com.emp.app.objecttypes.model.DBObjectType</beans:value>
+				<beans:value>com.emp.app.attributes.model.Attr</beans:value>
+				<beans:value>com.emp.app.params.model.Params</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -68,6 +70,21 @@
 	</beans:bean>
 	<beans:bean id="dbObjectTypeService" class="com.emp.app.objecttypes.service.DBObjectTypeServiceImpl">
 		<beans:property name="dbObjectTypeDAO" ref="dbObjectTypeDAO"/>
+	</beans:bean>
+
+
+	<beans:bean id="attrDAO" class="com.emp.app.attributes.dao.AttrDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="attrService" class="com.emp.app.attributes.service.AttrServiceImpl">
+		<beans:property name="attrDAO" ref="attrDAO"/>
+	</beans:bean>
+
+	<beans:bean id="paramsDAO" class="com.emp.app.params.dao.ParamsDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="paramService" class="com.emp.app.params.service.ParamsServiceImpl">
+		<beans:property name="paramsDAO" ref="paramsDAO"/>
 	</beans:bean>
 
 	<context:component-scan base-package="com.emp.app" />

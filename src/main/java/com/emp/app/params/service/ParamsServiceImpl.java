@@ -13,45 +13,39 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ParamsServiceImpl implements ParamsService {
 
-	private ParamsDAO dbobjectDAO;
+	private ParamsDAO paramsDAO;
 
-	public void setDbObjectDAO(ParamsDAO dbObjectDAO) {
-		this.dbobjectDAO = dbObjectDAO;
+	public void setParamsDAO(ParamsDAO dbObjectDAO) {
+		this.paramsDAO = paramsDAO;
 	}
 
 	@Override
 	@Transactional
-	public void addDBObject(Params p) {
-		this.dbobjectDAO.addDBObject(p);
+	public void addParams(Params p) {
+		this.paramsDAO.addParams(p);
 	}
 
 	@Override
 	@Transactional
-	public void updateDBObject(Params p) {
-		this.dbobjectDAO.updateDBObject(p);
+	public void updateParams(Params p) {
+		this.paramsDAO.updateParams(p);
 	}
 
 	@Override
 	@Transactional
-	public List<Params> listDBObjects() {
-		return this.dbobjectDAO.listDBObjects();
+	public List<Params> listParams() {
+		return this.paramsDAO.listParams();
 	}
 
 	@Override
 	@Transactional
-	public Params getDBObjectById(long id) {
-		return this.dbobjectDAO.getDBObjectById(id);
+	public Params getParamsById(long id) {
+		return this.paramsDAO.getParamsById(id);
 	}
 
 	@Override
 	@Transactional
-	public void removeDBObject(long id) {
-		this.dbobjectDAO.removeDBObject(id);
-	}
-
-	@Override
-	@Transactional
-	public List<Object[]> listExtendedDBObjects() {
-		return this.dbobjectDAO.listExtendedDBObjects();
+	public void removeParams(long id) {
+		this.paramsDAO.removeParams(id);
 	}
 }

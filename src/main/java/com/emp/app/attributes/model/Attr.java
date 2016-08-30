@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Attr {
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn( name = "object_type_id")
+	@JoinColumn( name = "object_type_id" )
 	private DBObjectType dbObjectType;
 
 	@Id

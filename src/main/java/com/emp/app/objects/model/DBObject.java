@@ -1,8 +1,10 @@
 package com.emp.app.objects.model;
 
+import com.emp.app.attributes.model.Attr;
 import com.emp.app.objecttypes.model.DBObjectType;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Entity bean with JPA annotations
@@ -15,7 +17,7 @@ import javax.persistence.*;
 public class DBObject {
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn( name = "object_type_id")
+	@JoinColumn( name = "object_type_id", nullable = false)
 	private DBObjectType dbObjectType;
 
 	@Id
@@ -76,4 +78,8 @@ public class DBObject {
 	public void setDbObjectType(DBObjectType dbObjectType) {
 		this.dbObjectType = dbObjectType;
 	}
+
+	@OneToMany(mappedBy="objectTypeId")
+	private List<Attr> listAttrs ;
+
 }

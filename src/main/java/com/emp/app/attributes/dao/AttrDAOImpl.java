@@ -27,14 +27,14 @@ public class AttrDAOImpl implements AttrDAO {
 	}
 
 	@Override
-	public void addDBObject(Attr p) {
+	public void addAttr(Attr p) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.persist(p);
 		logger.info("Person saved successfully, Person Details="+p);
 	}
 
 	@Override
-	public void updateDBObject(Attr p) {
+	public void updateAttr(Attr p) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(p);
 		logger.info("Person updated successfully, Person Details="+p);
@@ -42,18 +42,18 @@ public class AttrDAOImpl implements AttrDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Attr> listDBObjects() {
+	public List<Attr> listAttrs() {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q = "select o from Objects as o join o.dbObjectType where o.name like 'A%'";
-		List<Attr> objectsList = session.createQuery(q).setMaxResults(10).list();
-		for(Attr p : objectsList){
+		String q = "select a from Attributes as a join a.dbObjectType";
+		List<Attr> attrsList = session.createQuery(q).setMaxResults(10).list();
+		for(Attr p : attrsList){
 			logger.info("Person List::"+p);
 		}
-		return objectsList;
+		return attrsList;
 	}
 
 	@Override
-	public Attr getDBObjectById(long id) {
+	public Attr getAttrById(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Attr p = (Attr) session.load(DBObject.class, new Long(id));
 		logger.info("Person loaded successfully, Person details="+p);
@@ -61,7 +61,7 @@ public class AttrDAOImpl implements AttrDAO {
 	}
 
 	@Override
-	public void removeDBObject(long id) {
+	public void removeAttr(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Attr p = (Attr) session.load(DBObject.class, new Long(id));
 		if(null != p){
@@ -69,13 +69,4 @@ public class AttrDAOImpl implements AttrDAO {
 		}
 		logger.info("Person deleted successfully, person details="+p);
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Object[]> listAttrs() {
-		Session session = this.sessionFactory.getCurrentSession();
-		String q2 = "select o, o.dbObjectType from Attributes as a join a.dbObjectType ";
-		return (List<Object[]>) session.createQuery(q2).setMaxResults(25).list();
-	}
-
 }

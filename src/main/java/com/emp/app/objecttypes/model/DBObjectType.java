@@ -1,5 +1,6 @@
 package com.emp.app.objecttypes.model;
 
+import com.emp.app.attributes.model.Attr;
 import com.emp.app.objects.model.DBObject;
 
 import javax.persistence.*;
@@ -44,16 +45,26 @@ public class DBObjectType {
 	}
 
     @OneToMany(mappedBy="objectTypeId")
-//	@JoinColumn(name = "object_type_id", referencedColumnName = "object_type_id", nullable = false, updatable = false, insertable = false)
 	private List<DBObject> listDBObjects ;
+
+	@OneToMany(mappedBy="objectTypeId")
+	private List<Attr> listAttrs ;
+
 
 
     public List<DBObject> getListDBObjects() {
         return listDBObjects;
     }
 
-
     public void setListDBObjects(List<DBObject> listDBObjects) {
         this.listDBObjects = listDBObjects;
     }
+
+	public List<Attr> getListAttrs() {
+		return listAttrs;
+	}
+
+	public void setListAttrs(List<Attr> listAttrs) {
+		this.listAttrs = listAttrs;
+	}
 }

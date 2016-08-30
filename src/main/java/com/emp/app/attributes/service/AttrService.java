@@ -7,11 +7,10 @@ import com.emp.app.attributes.model.Attr;
 
 public interface AttrService {
 
-	public void addDBObject(Attr p);
-	public void updateDBObject(Attr p);
-	public List<Attr> listDBObjects();
-	public Attr getDBObjectById(long id);
-	public void removeDBObject(long id);
+	void addAttr(Attr p);
+	void updateAttr(Attr p);
+	List<Attr> listAttrs();
+	Attr getAttrById(long id);
+	void removeAttr(long id);
 
-	public List<Object[]> listExtendedDBObjects();
 }

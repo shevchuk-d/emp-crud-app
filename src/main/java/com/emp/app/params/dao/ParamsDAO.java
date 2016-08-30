@@ -7,12 +7,12 @@ import com.emp.app.params.model.Params;
 
 public interface ParamsDAO {
 
-	public void addDBObject(Params p);
-	public void updateDBObject(Params p);
-	public List<Params> listDBObjects();
+	void addParams(Params p);
+	void updateParams(Params p);
+	List<Params> listParams();
 
-	public Params getDBObjectById(long id);
-	public void removeDBObject(long id);
+	Params getParamsById(long id);
+	void removeParams(long id);
 
-	public List<Object[]> listExtendedDBObjects();
+
 }
