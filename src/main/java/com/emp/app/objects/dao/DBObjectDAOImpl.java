@@ -3,12 +3,8 @@ package com.emp.app.objects.dao;
 import java.util.List;
 
 import com.emp.app.objects.model.DBObject;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
-import org.hibernate.type.LongType;
-import org.hibernate.type.StringType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -73,8 +69,30 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<Object[]> listExtendedDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q2 = "select o, o.dbObjectType, ot.listAttrs from Objects as o join o.dbObjectType as ot join ot.listAttrs where o.name like 'A%' ";
-		return (List<Object[]>) session.createQuery(q2).setMaxResults(25).list();
+		String q2 =
+				"select " +
+						"o, " +
+						"first_name.value, " +
+						"last_name.value, " +
+						"gender.value, " +
+						"department.value, " +
+						"hire_date.value, " +
+						"is_manager.value " +
+				"from Objects as o " +
+						"join o.paramsList as gender " +
+						"join o.paramsList as is_manager " +
+						"join o.paramsList as first_name " +
+						"join o.paramsList as last_name " +
+						"join o.paramsList as hire_date " +
+						"join o.paramsList as department " +
+						"where is_manager.attr.name = 'Is Manager' " +
+						"and gender.attr.name = 'Gender' " +
+						"and first_name.attr.name = 'First Name' " +
+						"and department.attr.name = 'Department' " +
+						"and hire_date.attr.name = 'Hire Date' " +
+						"and last_name.attr.name = 'Last Name' "
+				;
+		return (List<Object[]>) session.createQuery(q2).setMaxResults(10).list();
 	}
 
 }

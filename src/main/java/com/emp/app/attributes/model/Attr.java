@@ -1,15 +1,12 @@
 package com.emp.app.attributes.model;
 
 import com.emp.app.objecttypes.model.DBObjectType;
+import com.emp.app.params.model.Params;
 
 import javax.persistence.*;
+import java.util.List;
 
-/**
- * Entity bean with JPA annotations
- * Hibernate provides JPA implementation
- * @author pankaj
- *
- */
+
 @Entity(name="Attributes")
 @Table(name="new_employees.Attributes")
 public class Attr {
@@ -64,5 +61,16 @@ public class Attr {
 
 	public void setDbObjectType(DBObjectType dbObjectType) {
 		this.dbObjectType = dbObjectType;
+	}
+
+	@OneToMany(mappedBy="paramsPK.attrId")
+	private List<Params> paramsList;
+
+	public List<Params> getParamsList() {
+		return paramsList;
+	}
+
+	public void setParamsList(List<Params> paramsList) {
+		this.paramsList = paramsList;
 	}
 }

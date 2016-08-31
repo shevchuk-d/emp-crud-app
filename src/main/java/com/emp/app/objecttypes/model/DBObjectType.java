@@ -6,11 +6,7 @@ import com.emp.app.objects.model.DBObject;
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Entity bean with JPA annotations
- * Hibernate provides JPA implementation
- *
- */
+
 @Entity (name="Object_types")
 @Table(name="new_employees.Object_types")
 public class DBObjectType {

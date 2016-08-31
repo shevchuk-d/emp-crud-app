@@ -6,11 +6,11 @@ import com.emp.app.objects.model.DBObject;
 
 public interface DBObjectService {
 
-	public void addDBObject(DBObject p);
-	public void updateDBObject(DBObject p);
-	public List<DBObject> listDBObjects();
-	public DBObject getDBObjectById(long id);
-	public void removeDBObject(long id);
+	void addDBObject(DBObject p);
+	void updateDBObject(DBObject p);
+	List<DBObject> listDBObjects();
+	DBObject getDBObjectById(long id);
+	void removeDBObject(long id);
 
-	public List<Object[]> listExtendedDBObjects();
+	List<Object[]> listExtendedDBObjects();
 }

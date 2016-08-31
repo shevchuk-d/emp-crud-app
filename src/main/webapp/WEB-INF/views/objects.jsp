@@ -88,20 +88,25 @@
 <c:if test="${!empty listExtendedDBObjects}">
 	<table class="tg">
 	<tr>
-		<%--<th width="80">Object ID</th>--%>
-		<th width="120">Object Name</th>
-		<th width="120">Object type</th>
-		<%--<th width="120">Old Object ID</th>--%>
+		<th width="80">First Name</th>
+		<th width="120">Last Name</th>
+		<th width="60">Gender</th>
+		<th width="120">Department</th>
+		<th width="120">Hire Date</th>
+		<th width="60">Is Manager</th>
 		<th width="60">Edit</th>
 		<th width="60">Delete</th>
 	</tr>
 	<c:forEach items="${listExtendedDBObjects}" var="object">
 		<tr>
 			<%--<td>${object[0].objectId}</td>--%>
-			<td>${object[0].name}</td>
-			<%--<td>${object[0].objectTypeId}</td>--%>
-			<td>${object[1].name}</td>
-			<%--<td>${object[0].oldObjectId}</td>--%>
+			<td>${object[1]}</td>
+			<td>${object[2]}</td>
+			<td>${object[3]}</td>
+			<td>${object[4]}</td>
+			<td>${object[5]}</td>
+			<td>${object[6]}</td>
+			<%--<td>${object[5]}</td>--%>
 			<td><a href="<c:url value='/edit/${object[0].objectId}' />" >Edit</a></td>
 			<td><a href="<c:url value='/remove/${object[0].objectId}' />" >Delete</a></td>
 		</tr>

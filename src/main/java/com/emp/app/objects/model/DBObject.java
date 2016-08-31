@@ -1,18 +1,13 @@
 package com.emp.app.objects.model;
 
-import com.emp.app.attributes.model.Attr;
+
 import com.emp.app.objecttypes.model.DBObjectType;
 import com.emp.app.params.model.Params;
 
 import javax.persistence.*;
 import java.util.List;
 
-/**
- * Entity bean with JPA annotations
- * Hibernate provides JPA implementation
- * @author pankaj
- *
- */
+
 @Entity(name="Objects")
 @Table(name="new_employees.Objects")
 public class DBObject {
@@ -22,7 +17,7 @@ public class DBObject {
 	private DBObjectType dbObjectType;
 
 //	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn( name="objectId",referencedColumnName="object_id", insertable=false, updatable=false)
+//	@JoinColumn( name="object_id", insertable=false, updatable=false)
 //	private Params params;
 
 	@Id
@@ -35,9 +30,6 @@ public class DBObject {
 
     @Column(name="object_type_id", nullable = false, updatable = false, insertable = false )
 	private long objectTypeId;
-
-	@Column(name="old_object_id")
-	private String oldObjectId;
 
 	public long getObjectId() {
 		return objectId;
@@ -68,14 +60,6 @@ public class DBObject {
 		return "objectId="+ objectId +", name="+name+", ot_id="+objectTypeId;
 	}
 
-	public String getOldObjectId() {
-		return oldObjectId;
-	}
-
-	public void setOldObjectId(String oldObjectId) {
-		this.oldObjectId = oldObjectId;
-	}
-
 	public DBObjectType getDbObjectType() {
 		return dbObjectType;
 	}
@@ -84,7 +68,7 @@ public class DBObject {
 		this.dbObjectType = dbObjectType;
 	}
 
-	@OneToMany(mappedBy="objectTypeId")
-	private List<Attr> listAttrs ;
+	@OneToMany(mappedBy="paramsPK.objectId")
+	private List<Params> paramsList;
 
 }
