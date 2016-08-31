@@ -2,6 +2,7 @@ package com.emp.app.objects.model;
 
 import com.emp.app.attributes.model.Attr;
 import com.emp.app.objecttypes.model.DBObjectType;
+import com.emp.app.params.model.Params;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,13 +18,17 @@ import java.util.List;
 public class DBObject {
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn( name = "object_type_id", nullable = false)
+	@JoinColumn( name="object_type_id")
 	private DBObjectType dbObjectType;
+
+//	@ManyToOne(fetch = FetchType.EAGER)
+//	@JoinColumn( name="objectId",referencedColumnName="object_id", insertable=false, updatable=false)
+//	private Params params;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="object_id")
-	private long id;
+	@Column(name="object_id", nullable = false, updatable = false, insertable = false)
+	private long objectId;
 
 	@Column(name="name")
 	private String name;
@@ -34,12 +39,12 @@ public class DBObject {
 	@Column(name="old_object_id")
 	private String oldObjectId;
 
-	public long getId() {
-		return id;
+	public long getObjectId() {
+		return objectId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setObjectId(long objectId) {
+		this.objectId = objectId;
 	}
 
 	public String getName() {
@@ -60,7 +65,7 @@ public class DBObject {
 	
 	@Override
 	public String toString(){
-		return "id="+id+", name="+name+", ot_id="+objectTypeId;
+		return "objectId="+ objectId +", name="+name+", ot_id="+objectTypeId;
 	}
 
 	public String getOldObjectId() {

@@ -24,13 +24,13 @@
 	<%--<c:if test="${!empty object.name}">--%>
 	<%--<tr>--%>
 		<%--<td>--%>
-			<%--<form:label path="id">--%>
-				<%--<spring:message text="id"/>--%>
+			<%--<form:label path="objectId">--%>
+				<%--<spring:message text="objectId"/>--%>
 			<%--</form:label>--%>
 		<%--</td>--%>
 		<%--<td>--%>
-			<%--<form:input path="id" readonly="true" size="8"  disabled="true" />--%>
-			<%--<form:hidden path="id" />--%>
+			<%--<form:input path="objectId" readonly="true" size="8"  disabled="true" />--%>
+			<%--<form:hidden path="objectId" />--%>
 		<%--</td> --%>
 	<%--</tr>--%>
 	<%--</c:if>--%>
@@ -97,13 +97,13 @@
 	</tr>
 	<c:forEach items="${listExtendedDBObjects}" var="object">
 		<tr>
-			<%--<td>${object[0].id}</td>--%>
+			<%--<td>${object[0].objectId}</td>--%>
 			<td>${object[0].name}</td>
 			<%--<td>${object[0].objectTypeId}</td>--%>
 			<td>${object[1].name}</td>
 			<%--<td>${object[0].oldObjectId}</td>--%>
-			<td><a href="<c:url value='/edit/${object[0].id}' />" >Edit</a></td>
-			<td><a href="<c:url value='/remove/${object[0].id}' />" >Delete</a></td>
+			<td><a href="<c:url value='/edit/${object[0].objectId}' />" >Edit</a></td>
+			<td><a href="<c:url value='/remove/${object[0].objectId}' />" >Delete</a></td>
 		</tr>
 	</c:forEach>
 	</table>

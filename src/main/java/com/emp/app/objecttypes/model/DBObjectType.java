@@ -15,6 +15,10 @@ import java.util.List;
 @Table(name="new_employees.Object_types")
 public class DBObjectType {
 
+//	@OneToOne(fetch = FetchType.EAGER)
+//	@JoinColumn( name="object_type_id", insertable=false, updatable=false)
+//	private Attr attr;
+
 	@Id
 	@Column(name="object_type_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

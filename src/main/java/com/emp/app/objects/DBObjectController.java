@@ -34,7 +34,7 @@ public class DBObjectController {
 	@RequestMapping(value= "/object/add", method = RequestMethod.POST)
 	public String addDBObject(@ModelAttribute("object") DBObject p){
 		
-		if(p.getId() == 0){
+		if(p.getObjectId() == 0){
 			//new person, add it
 			this.dbObjectService.addDBObject(p);
 		}else{

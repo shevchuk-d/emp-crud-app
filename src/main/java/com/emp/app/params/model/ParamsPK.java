@@ -10,18 +10,18 @@ import java.io.Serializable;
 @Embeddable
 public class ParamsPK implements Serializable {
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "object_id")
-    private DBObject dbObject;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn( name = "attr_id" )
-    private Attr attr;
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn( name="object_id", insertable=false, updatable=false)
+//    private DBObject dbObject;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn( name="attr_id", insertable=false, updatable=false)
+//    private Attr attr;
 
     @Column(name = "object_id")
     private long objectId;
 
-    @Column(name = "attr_id")
+    @Column(name = "attr_id", nullable=false)
     private long attrId;
 
     public long getObjectId() {
@@ -40,19 +40,19 @@ public class ParamsPK implements Serializable {
         this.attrId = attrId;
     }
 
-    public DBObject getDbObject() {
-        return dbObject;
-    }
-
-    public void setDbObject(DBObject dbObject) {
-        this.dbObject = dbObject;
-    }
-
-    public Attr getAttr() {
-        return attr;
-    }
-
-    public void setAttr(Attr attr) {
-        this.attr = attr;
-    }
+//    public DBObject getDbObject() {
+//        return dbObject;
+//    }
+//
+//    public void setDbObject(DBObject dbObject) {
+//        this.dbObject = dbObject;
+//    }
+//
+//    public Attr getAttr() {
+//        return attr;
+//    }
+//
+//    public void setAttr(Attr attr) {
+//        this.attr = attr;
+//    }
 }

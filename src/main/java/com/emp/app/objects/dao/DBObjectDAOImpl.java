@@ -73,7 +73,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<Object[]> listExtendedDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q2 = "select o, o.dbObjectType from Objects as o join o.dbObjectType where o.name like 'A%' ";
+		String q2 = "select o, o.dbObjectType, ot.listAttrs from Objects as o join o.dbObjectType as ot join ot.listAttrs where o.name like 'A%' ";
 		return (List<Object[]>) session.createQuery(q2).setMaxResults(25).list();
 	}
 
