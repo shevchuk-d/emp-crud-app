@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class DBObjectDAOImpl implements DBObjectDAO {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(DBObjectDAOImpl.class);
 
 	private SessionFactory sessionFactory;
@@ -65,9 +65,38 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 		logger.info("Person deleted successfully, person details="+p);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object[]> listExtendedDBObjects() {
+		Session session = this.sessionFactory.getCurrentSession();
+		String q2 =
+				"select " +
+						"o, " +
+						"first_name.value, " +
+						"last_name.value, " +
+						"gender.value, " +
+						"department.value, " +
+						"hire_date.value, " +
+						"is_manager.value " +
+						"from Objects as o " +
+						"join o.paramsList as gender " +
+						"join o.paramsList as is_manager " +
+						"join o.paramsList as first_name " +
+						"join o.paramsList as last_name " +
+						"join o.paramsList as hire_date " +
+						"join o.paramsList as department " +
+						"where is_manager.attr.name = 'Is Manager' " +
+						"and gender.attr.name = 'Gender' " +
+						"and first_name.attr.name = 'First Name' " +
+						"and department.attr.name = 'Department' " +
+						"and hire_date.attr.name = 'Hire Date' " +
+						"and last_name.attr.name = 'Last Name' "
+				;
+		return (List<Object[]>) session.createQuery(q2).setMaxResults(10).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object[]> listExtendedDBObjects(int limit) {
 		Session session = this.sessionFactory.getCurrentSession();
 		String q2 =
 				"select " +
@@ -92,7 +121,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 						"and hire_date.attr.name = 'Hire Date' " +
 						"and last_name.attr.name = 'Last Name' "
 				;
-		return (List<Object[]>) session.createQuery(q2).setMaxResults(10).list();
+		return (List<Object[]>) session.createQuery(q2).setMaxResults(limit).list();
 	}
 
 }

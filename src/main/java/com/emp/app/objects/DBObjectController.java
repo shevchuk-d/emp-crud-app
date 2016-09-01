@@ -1,11 +1,13 @@
 package com.emp.app.objects;
 
+import com.emp.app.Upd;
 import com.emp.app.objects.model.DBObject;
 import com.emp.app.objects.service.DBObjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DBObjectController {
 	
 	private DBObjectService dbObjectService;
-	
+
+
+	private Upd upd = new Upd();
+
+
+
 	@Autowired(required=true)
 	@Qualifier(value= "dbObjectService")
 	public void setDBObjectService(DBObjectService ps){
@@ -61,9 +68,17 @@ public class DBObjectController {
 
 	@RequestMapping(value = "/objects", method = RequestMethod.GET)
 	public String listDBObjects(Model model) {
+		model.addAttribute("upd", new Upd());
 		model.addAttribute("object", new Object());
 		model.addAttribute("listExtendedDBObjects", this.dbObjectService.listExtendedDBObjects());
 		return "objects";
 	}
 
+	@RequestMapping(value = "/objects", method = RequestMethod.POST)
+	public String saveOrUpdateUser(@ModelAttribute("upd") Upd upd,
+								   BindingResult result, Model model) {
+		model.addAttribute("listExtendedDBObjects",
+				this.dbObjectService.listExtendedDBObjects(Integer.parseInt(upd.getLimit())));
+		return "redirect:/objects";
+	}
 }

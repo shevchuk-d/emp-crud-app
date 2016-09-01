@@ -56,4 +56,10 @@ public class DBObjectServiceImpl implements DBObjectService {
 	public List<Object[]> listExtendedDBObjects() {
 		return this.dbobjectDAO.listExtendedDBObjects();
 	}
+
+	@Override
+	@Transactional
+	public List<Object[]> listExtendedDBObjects(int limit) {
+		return this.dbobjectDAO.listExtendedDBObjects(limit);
+	}
 }

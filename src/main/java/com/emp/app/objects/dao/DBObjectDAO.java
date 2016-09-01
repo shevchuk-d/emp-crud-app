@@ -14,4 +14,7 @@ public interface DBObjectDAO {
 	void removeDBObject(long id);
 
 	List<Object[]> listExtendedDBObjects();
+
+	@SuppressWarnings("unchecked")
+	List<Object[]> listExtendedDBObjects(int limit);
 }

@@ -3,6 +3,7 @@ package com.emp.app.objects.service;
 import java.util.List;
 
 import com.emp.app.objects.model.DBObject;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface DBObjectService {
 
@@ -13,4 +14,7 @@ public interface DBObjectService {
 	void removeDBObject(long id);
 
 	List<Object[]> listExtendedDBObjects();
+
+	@Transactional
+	List<Object[]> listExtendedDBObjects(int limit);
 }

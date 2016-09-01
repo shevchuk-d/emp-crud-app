@@ -83,6 +83,30 @@
 <%--</form:form>--%>
 
 
+<form:form action="${upd}" commandName="upd">
+	<table>
+		<tr>
+			<td>
+				<form:label path="limit">
+					<spring:message text="lim"/>
+				</form:label>
+			</td>
+			<td>
+				<form:input path="limit" />
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="2">
+				<c:if test="${!empty upd.limit}">
+					<input type="submit" value="<spring:message text="upd"/>" />
+				</c:if>
+			</td>
+		</tr>
+	</table>
+</form:form>
+
+
 <br>
 <h3>Objects List</h3>
 <c:if test="${!empty listExtendedDBObjects}">
