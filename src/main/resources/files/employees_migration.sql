@@ -142,3 +142,18 @@ insert into new_employees.params (object_id, attr_id, value) (
 	join new_employees.attributes a
 	on (o.object_type_id = a.object_type_id and a.name = 'Is Manager')
 );
+insert into new_employees.params (object_id, attr_id, value) (
+    select o.object_id, a.attr_id,
+    (
+    select dept_name
+    from employees.departments dd
+    where de.dept_no = dd.dept_no
+    ) as 'value'
+    from new_employees.objects o
+    join employees.dept_emp de
+	on (o.old_object_id = de.emp_no)
+	join new_employees.attributes a
+	on (o.object_type_id = a.object_type_id and a.name = 'Department')
+);
+
+ALTER TABLE new_employees.objects DROP old_object_id;

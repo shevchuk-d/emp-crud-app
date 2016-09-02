@@ -70,15 +70,16 @@ public class DBObjectController {
 	public String listDBObjects(Model model) {
 		model.addAttribute("upd", new Upd());
 		model.addAttribute("object", new Object());
-		model.addAttribute("listExtendedDBObjects", this.dbObjectService.listExtendedDBObjects());
+		model.addAttribute("listExtendedDBObjects", this.dbObjectService.listExtendedDBObjects(20));
 		return "objects";
 	}
 
-	@RequestMapping(value = "/objects", method = RequestMethod.POST)
+	@RequestMapping(value = "/updv", method = RequestMethod.POST)
 	public String saveOrUpdateUser(@ModelAttribute("upd") Upd upd,
 								   BindingResult result, Model model) {
 		model.addAttribute("listExtendedDBObjects",
 				this.dbObjectService.listExtendedDBObjects(Integer.parseInt(upd.getLimit())));
+
 		return "redirect:/objects";
 	}
 }

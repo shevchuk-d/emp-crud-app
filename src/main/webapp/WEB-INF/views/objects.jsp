@@ -31,7 +31,7 @@
 		<%--<td>--%>
 			<%--<form:input path="objectId" readonly="true" size="8"  disabled="true" />--%>
 			<%--<form:hidden path="objectId" />--%>
-		<%--</td> --%>
+		<%--</td>--%>
 	<%--</tr>--%>
 	<%--</c:if>--%>
 	<%--<tr>--%>
@@ -42,7 +42,7 @@
 		<%--</td>--%>
 		<%--<td>--%>
 			<%--<form:input path="name" />--%>
-		<%--</td> --%>
+		<%--</td>--%>
 	<%--</tr>--%>
 
 	<%--<tr>--%>
@@ -83,7 +83,7 @@
 <%--</form:form>--%>
 
 
-<form:form action="${upd}" commandName="upd">
+<form:form action="${updv}" modelAttribute="upd" method="POST">
 	<table>
 		<tr>
 			<td>
@@ -97,10 +97,10 @@
 		</tr>
 
 		<tr>
-			<td colspan="2">
-				<c:if test="${!empty upd.limit}">
-					<input type="submit" value="<spring:message text="upd"/>" />
-				</c:if>
+			<td >
+				<%--<c:if test="${!empty upd.limit}">--%>
+					<input type="submit" value="Submit" />
+				<%--</c:if>--%>
 			</td>
 		</tr>
 	</table>
@@ -109,6 +109,25 @@
 
 <br>
 <h3>Objects List</h3>
+
+
+<%--<form:form action="${changeQuantity}" commandName="object">--%>
+	<%--<table>--%>
+		<%--<tr>--%>
+			<%--<td>--%>
+				<%--<form:label >--%>
+					<%--<spring:message text="Name"/>--%>
+				<%--</form:label>--%>
+			<%--</td>--%>
+			<%--<td>--%>
+				<%--<input type="submit"--%>
+							<%--value="<spring:message text="Edit view"/>" />--%>
+			<%--</td>--%>
+		<%--</tr>--%>
+	<%--</table>--%>
+<%--</form:form>--%>
+
+
 <c:if test="${!empty listExtendedDBObjects}">
 	<table class="tg">
 	<tr>
