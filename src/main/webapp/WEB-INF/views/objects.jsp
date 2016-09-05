@@ -83,7 +83,7 @@
 <%--</form:form>--%>
 
 
-<form:form action="${updv}" modelAttribute="upd" method="POST">
+<form:form method="post" modelAttribute="upd">
 	<table>
 		<tr>
 			<td>
