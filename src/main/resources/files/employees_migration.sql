@@ -130,17 +130,35 @@ insert into new_employees.params (object_id, attr_id, value) (
 	on (o.object_type_id = a.object_type_id and a.name = 'Salary')
 );
 insert into new_employees.params (object_id, attr_id, value) (
-    select o.object_id, a.attr_id, 
-    (case
-    when dm.dept_no is not null then  'Yes'
-    end
-    )
-    as 'value'
-    from new_employees.objects o
-    join employees.dept_manager dm
-	on (o.old_object_id = dm.emp_no)
-	join new_employees.attributes a
-	on (o.object_type_id = a.object_type_id and a.name = 'Is Manager')
+  select *
+  from
+    (
+      select o.object_id, a.attr_id,
+        (case
+         when dm.dept_no is not null then  'Yes'
+         when dm.dept_no is null then  'No'
+         end
+        )
+          as 'value'
+      from new_employees.objects o
+        left outer join employees.dept_manager dm
+          on (o.old_object_id = dm.emp_no)
+        join new_employees.attributes a
+          on (o.object_type_id = a.object_type_id and a.name = 'Is Manager')
+      union
+      select o.object_id, a.attr_id,
+        (case
+         when dm.dept_no is not null then  'Yes'
+         when dm.dept_no is null then  'No'
+         end
+        )
+          as 'value'
+      from new_employees.objects o
+        right outer join employees.dept_manager dm
+          on (o.old_object_id = dm.emp_no)
+        join new_employees.attributes a
+          on (o.object_type_id = a.object_type_id and a.name = 'Is Manager')
+    ) x
 );
 insert into new_employees.params (object_id, attr_id, value) (
     select o.object_id, a.attr_id,
