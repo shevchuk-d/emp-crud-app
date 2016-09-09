@@ -3,6 +3,7 @@ package com.emp.app.objects.dao;
 import java.util.List;
 
 import com.emp.app.objects.model.DBObject;
+import com.emp.app.params.model.Params;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -24,6 +25,8 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public void addDBObject(DBObject p) {
 		Session session = this.sessionFactory.getCurrentSession();
+		System.out.println(p.toString());
+		System.out.println(p);
 		session.persist(p);
 		logger.info("Person saved successfully, Person Details="+p);
 	}
@@ -31,7 +34,12 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public void updateDBObject(DBObject p) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(p);
+		String q = "update Objects as o set o.objectId = :objectId, o.objectTypeId = :objectTypeId, o.name = :name where o.objectId = :objectId";
+		session.createQuery(q).setLong("objectId", p.getObjectId())
+				.setLong("objectTypeId", p.getObjectTypeId())
+				.setParameter("name", p.getName())
+				.executeUpdate();
+//		session.update(p);
 		logger.info("Person updated successfully, Person Details="+p);
 	}
 
@@ -39,7 +47,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 	@Override
 	public List<DBObject> listDBObjects() {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q = "select o from Objects as o join o.dbObjectType where o.name like 'A%'";
+		String q = "select o from Objects as o where o.name like 'A%'";
 		List<DBObject> objectsList = session.createQuery(q).setMaxResults(10).list();
 		for(DBObject p : objectsList){
 			logger.info("Person List::"+p);
@@ -90,6 +98,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 						"and department.attr.name = 'Department' " +
 						"and hire_date.attr.name = 'Hire Date' " +
 						"and last_name.attr.name = 'Last Name' "
+//						+ "order by o.objectId desc "
 				;
 		return (List<Object[]>) session.createQuery(q2).setMaxResults(10).list();
 	}
@@ -120,6 +129,7 @@ public class DBObjectDAOImpl implements DBObjectDAO {
 						"and department.attr.name = 'Department' " +
 						"and hire_date.attr.name = 'Hire Date' " +
 						"and last_name.attr.name = 'Last Name' "
+//						+ "order by o.objectId desc "
 				;
 		return (List<Object[]>) session.createQuery(q2).setMaxResults(limit).list();
 	}

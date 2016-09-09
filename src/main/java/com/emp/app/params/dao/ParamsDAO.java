@@ -9,7 +9,7 @@ public interface ParamsDAO {
 
 	void addParams(Params p);
 	void updateParams(Params p);
-	List<Params> listParams();
+	List<Params> listParams(long objectId);
 
 	Params getParamsById(long id);
 	void removeParams(long id);

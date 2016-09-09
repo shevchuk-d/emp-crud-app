@@ -15,7 +15,7 @@ public class ParamsServiceImpl implements ParamsService {
 
 	private ParamsDAO paramsDAO;
 
-	public void setParamsDAO(ParamsDAO dbObjectDAO) {
+	public void setParamsDAO(ParamsDAO paramsDAO) {
 		this.paramsDAO = paramsDAO;
 	}
 
@@ -33,8 +33,8 @@ public class ParamsServiceImpl implements ParamsService {
 
 	@Override
 	@Transactional
-	public List<Params> listParams() {
-		return this.paramsDAO.listParams();
+	public List<Params> listParams(long objectId) {
+		return this.paramsDAO.listParams(objectId);
 	}
 
 	@Override

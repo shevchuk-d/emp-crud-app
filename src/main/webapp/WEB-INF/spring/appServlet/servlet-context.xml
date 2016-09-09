@@ -72,7 +72,6 @@
 		<beans:property name="dbObjectTypeDAO" ref="dbObjectTypeDAO"/>
 	</beans:bean>
 
-
 	<beans:bean id="attrDAO" class="com.emp.app.attributes.dao.AttrDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
@@ -95,6 +94,5 @@
 	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-
 
 </beans:beans>

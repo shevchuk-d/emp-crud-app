@@ -13,74 +13,63 @@
 	</style>
 </head>
 <body>
-<%--<h1>--%>
-	<%--Add an Object--%>
-<%--</h1>--%>
+<h1>
+	Add an Object
+</h1>
 
-<%--<c:url var="addAction" value="/object/add" ></c:url>--%>
+<c:url var="addAction" value="/object/add" ></c:url>
 
-<%--<form:form action="${addAction}" commandName="object">--%>
-<%--<table>--%>
-	<%--<c:if test="${!empty object.name}">--%>
-	<%--<tr>--%>
-		<%--<td>--%>
-			<%--<form:label path="objectId">--%>
-				<%--<spring:message text="objectId"/>--%>
-			<%--</form:label>--%>
-		<%--</td>--%>
-		<%--<td>--%>
-			<%--<form:input path="objectId" readonly="true" size="8"  disabled="true" />--%>
-			<%--<form:hidden path="objectId" />--%>
-		<%--</td>--%>
-	<%--</tr>--%>
-	<%--</c:if>--%>
-	<%--<tr>--%>
-		<%--<td>--%>
-			<%--<form:label path="name">--%>
-				<%--<spring:message text="Name"/>--%>
-			<%--</form:label>--%>
-		<%--</td>--%>
-		<%--<td>--%>
-			<%--<form:input path="name" />--%>
-		<%--</td>--%>
-	<%--</tr>--%>
+<form:form action="${addAction}" modelAttribute="object" commandName="object">
+<table>
+	<c:if test="${!empty object.name}">
+	<tr>
+		<td>
+			<form:label path="objectId">
+				<spring:message text="objectId"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="objectId" readonly="true" size="8"  disabled="true" />
+			<form:hidden path="objectId" />
+		</td>
+	</tr>
+	</c:if>
+	<tr>
+		<td>
+			<form:label path="name">
+				<spring:message text="Name"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="name" />
+		</td>
+	</tr>
 
-	<%--<tr>--%>
-		<%--<td>--%>
-			<%--<form:label path="objectTypeId">--%>
-				<%--<spring:message text="objectTypeId"/>--%>
-			<%--</form:label>--%>
-		<%--</td>--%>
-		<%--<td>--%>
-			<%--<form:input path="objectTypeId" />--%>
-		<%--</td>--%>
-	<%--</tr>--%>
+	<tr>
+		<td>
+			<form:label path="objectTypeId">
+				<spring:message text="Object Type Id"/>
+			</form:label>
+		</td>
+		<td>
+			<form:input path="objectTypeId" />
+		</td>
+	</tr>
 
-	<%--<tr>--%>
-		<%--<td>--%>
-			<%--<form:label path="oldObjectId">--%>
-				<%--<spring:message text="oldObjectId"/>--%>
-			<%--</form:label>--%>
-		<%--</td>--%>
-		<%--<td>--%>
-			<%--<form:input path="oldObjectId" />--%>
-		<%--</td>--%>
-	<%--</tr>--%>
-
-	<%--<tr>--%>
-		<%--<td colspan="2">--%>
-			<%--<c:if test="${!empty object.name}">--%>
-				<%--<input type="submit"--%>
-					<%--value="<spring:message text="Edit Object"/>" />--%>
-			<%--</c:if>--%>
-			<%--<c:if test="${empty object.name}">--%>
-				<%--<input type="submit"--%>
-					<%--value="<spring:message text="Add Object"/>" />--%>
-			<%--</c:if>--%>
-		<%--</td>--%>
-	<%--</tr>--%>
-<%--</table>--%>
-<%--</form:form>--%>
+	<tr>
+		<td colspan="2">
+			<c:if test="${!empty object.name}">
+				<input type="submit"
+					value="<spring:message text="Edit Object"/>" />
+			</c:if>
+			<c:if test="${empty object.name}">
+				<input type="submit"
+					value="<spring:message text="Add Object"/>" />
+			</c:if>
+		</td>
+	</tr>
+</table>
+</form:form>
 
 
 <form:form method="post" modelAttribute="upd">
@@ -98,9 +87,9 @@
 
 		<tr>
 			<td >
-				<%--<c:if test="${!empty upd.limit}">--%>
+				<c:if test="${!empty upd.limit}">
 					<input type="submit" value="Submit" />
-				<%--</c:if>--%>
+				</c:if>
 			</td>
 		</tr>
 	</table>
@@ -110,27 +99,44 @@
 <br>
 <h3>Objects List</h3>
 
-
-<%--<form:form action="${changeQuantity}" commandName="object">--%>
-	<%--<table>--%>
-		<%--<tr>--%>
-			<%--<td>--%>
-				<%--<form:label >--%>
-					<%--<spring:message text="Name"/>--%>
-				<%--</form:label>--%>
-			<%--</td>--%>
-			<%--<td>--%>
-				<%--<input type="submit"--%>
-							<%--value="<spring:message text="Edit view"/>" />--%>
-			<%--</td>--%>
-		<%--</tr>--%>
-	<%--</table>--%>
-<%--</form:form>--%>
+<c:if test="${!empty listAtrs}">
+	<table class="tg">
+		<tr>
+			<th width="80">Object ID</th>
+			<th width="80">Object Name</th>
+			<th width="80">First Name</th>
+			<th width="120">Last Name</th>
+			<th width="60">Gender</th>
+			<th width="120">Department</th>
+			<th width="120">Hire Date</th>
+			<th width="60">Is Manager</th>
+			<th width="60">Edit</th>
+			<th width="60">Delete</th>
+		</tr>
+		<c:forEach items="${listExtendedDBObjects}" var="object">
+			<tr>
+				<td>${object[0].objectId}</td>
+				<td>${object[0].name}</td>
+				<td>${object[1]}</td>
+				<td>${object[2]}</td>
+				<td>${object[3]}</td>
+				<td>${object[4]}</td>
+				<td>${object[5]}</td>
+				<td>${object[6]}</td>
+					<%--<td>${object[5]}</td>--%>
+				<td><a href="<c:url value='/edit/${object[0].objectId}' />" >Edit</a></td>
+				<td><a href="<c:url value='/remove/${object[0].objectId}' />" >Delete</a></td>
+			</tr>
+		</c:forEach>
+	</table>
+</c:if>
 
 
 <c:if test="${!empty listExtendedDBObjects}">
 	<table class="tg">
 	<tr>
+		<th width="80">Object ID</th>
+		<th width="80">Object Name</th>
 		<th width="80">First Name</th>
 		<th width="120">Last Name</th>
 		<th width="60">Gender</th>
@@ -142,7 +148,8 @@
 	</tr>
 	<c:forEach items="${listExtendedDBObjects}" var="object">
 		<tr>
-			<%--<td>${object[0].objectId}</td>--%>
+			<td>${object[0].objectId}</td>
+			<td>${object[0].name}</td>
 			<td>${object[1]}</td>
 			<td>${object[2]}</td>
 			<td>${object[3]}</td>

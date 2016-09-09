@@ -12,14 +12,6 @@ import java.util.List;
 @Table(name="new_employees.Objects")
 public class DBObject {
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn( name="object_type_id")
-	private DBObjectType dbObjectType;
-
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn( name="object_id", insertable=false, updatable=false)
-//	private Params params;
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="object_id", nullable = false, updatable = false, insertable = false)
@@ -28,7 +20,7 @@ public class DBObject {
 	@Column(name="name")
 	private String name;
 
-    @Column(name="object_type_id", nullable = false, updatable = false, insertable = false )
+    @Column(name="object_type_id" )
 	private long objectTypeId;
 
 	public long getObjectId() {
@@ -60,13 +52,13 @@ public class DBObject {
 		return "objectId="+ objectId +", name="+name+", ot_id="+objectTypeId;
 	}
 
-	public DBObjectType getDbObjectType() {
-		return dbObjectType;
-	}
-
-	public void setDbObjectType(DBObjectType dbObjectType) {
-		this.dbObjectType = dbObjectType;
-	}
+//	public DBObjectType getDbObjectType() {
+//		return dbObjectType;
+//	}
+//
+//	public void setDbObjectType(DBObjectType dbObjectType) {
+//		this.dbObjectType = dbObjectType;
+//	}
 
 	@OneToMany(mappedBy="paramsPK.objectId")
 	private List<Params> paramsList;

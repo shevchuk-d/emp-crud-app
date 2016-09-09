@@ -42,14 +42,14 @@ public class ParamsDAOImpl implements ParamsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Params> listParams() {
+	public List<Params> listParams(long objectId) {
 		Session session = this.sessionFactory.getCurrentSession();
-		String q = "select o from Objects as o join o.dbObjectType where o.name like 'A%'";
-		List<Params> objectsList = session.createQuery(q).setMaxResults(10).list();
-		for(Params p : objectsList){
+		String q = "select p from Params as p where p.objectId = :objectId ";
+		List<Params> paramsList = session.createQuery(q).setParameter("objectId", objectId).list();
+		for(Params p : paramsList){
 			logger.info("Person List::"+p);
 		}
-		return objectsList;
+		return paramsList;
 	}
 
 	@Override
@@ -63,11 +63,14 @@ public class ParamsDAOImpl implements ParamsDAO {
 	@Override
 	public void removeParams(long id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		DBObject p = (DBObject) session.load(Params.class, new Long(id));
-		if(null != p){
-			session.delete(p);
-		}
-		logger.info("Person deleted successfully, person details="+p);
+		String q = "delete from Params as p where p.paramsPK.objectId = :objectId ";
+
+		session.createQuery(q).setParameter("objectId", new Long(id)).executeUpdate();
+//		Params p = (Params) session.load(Params.class, new Long(id));
+//		if(null != p){
+//			session.delete(p);
+//		}
+//		logger.info("Person deleted successfully, person details="+p);
 	}
 
 }

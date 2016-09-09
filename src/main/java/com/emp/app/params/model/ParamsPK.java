@@ -6,6 +6,11 @@ import java.io.Serializable;
 @Embeddable
 public class ParamsPK implements Serializable {
 
+    public ParamsPK(){}
+
+    public ParamsPK(long objectId){
+        this.objectId = objectId;
+    }
 
 
     @Column(name = "object_id")
