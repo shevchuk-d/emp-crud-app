@@ -70,14 +70,12 @@ public class DBObjectController {
     public String editDBObject(@PathVariable("object_id") long id, Model model){
 		model.addAttribute("upd", new Upd());
         model.addAttribute("object", this.dbObjectService.getDBObjectById(id));
-        model.addAttribute("listExtendedDBObjects",
-                this.dbObjectService.listExtendedDBObjects());
-        return "objects";
+        return "objAdd";
     }
 
 	@RequestMapping(value = "/objects", method = RequestMethod.GET)
 	public String listDBObjects(Model model) {
-		model.addAttribute("listParams", this.paramsService.listParams(objectId));
+//		model.addAttribute("listParams", this.paramsService.listParams(objectId));
 		model.addAttribute("upd", new Upd());
 		model.addAttribute("object", new DBObject());
 		upd.setLimit("10");
@@ -90,8 +88,11 @@ public class DBObjectController {
 	public String saveOrUpdateUser(@ModelAttribute("upd") Upd upd,
 								   BindingResult result, Model model) {
 		Upd u = (Upd) result.getModel().get("upd");
+		int limit;
+		try {limit = Integer.parseInt(u.getLimit());} catch (NumberFormatException nfe){limit = 10;}
+		model.addAttribute("object", new DBObject());
 		model.addAttribute("listExtendedDBObjects",
-				this.dbObjectService.listExtendedDBObjects(Integer.parseInt(u.getLimit())));
+				this.dbObjectService.listExtendedDBObjects(limit));
 		return "objects";
 	}
 
@@ -99,5 +100,11 @@ public class DBObjectController {
 	@Qualifier(value= "paramService")
 	public void setParamsService(ParamsService paramsService) {
 		this.paramsService = paramsService;
+	}
+
+	@RequestMapping("/add")
+	public String addd(Model model){
+		model.addAttribute("object", new DBObject());
+		return "objAdd";
 	}
 }
